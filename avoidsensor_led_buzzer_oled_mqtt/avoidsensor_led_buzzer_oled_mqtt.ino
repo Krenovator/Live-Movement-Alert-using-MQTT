@@ -17,13 +17,13 @@
  */
  
 /*the library for OLED display*/
-#include <SPI.h>
+/*#include <SPI.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include <Adafruit_SSD1306.h>*/
 
-#define OLED_RESET LED_BUILTIN
-Adafruit_SSD1306 display(OLED_RESET);
+//#define OLED_RESET LED_BUILTIN
+//Adafruit_SSD1306 display(OLED_RESET);
 
 //initialize for pin used
 int avoidpin = D4;  //KY-032 avoidance sensor
@@ -38,9 +38,9 @@ int i;              //the initialize for the function to be read in Adafruit
 #include "Adafruit_MQTT.h"
 #include "Adafruit_MQTT_Client.h"
 
-#if (SSD1306_LCDHEIGHT != 64)   //to declare the pixel of OLED
+/*#if (SSD1306_LCDHEIGHT != 64)   //to declare the pixel of OLED
 #error("Height incorrect, please fix Adafruit_SSD1306.h!");   //if got an error, the codes need to be changed
-#endif
+#endif*/
 
 /************************* WiFi Access Point *********************************/
 
@@ -80,7 +80,7 @@ Adafruit_MQTT_Publish Movement = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/fee
 void MQTT_connect();
 
 void setup() {
-  display.clearDisplay();
+  //display.clearDisplay();
   
   Serial.begin(115200);
   
@@ -94,7 +94,7 @@ void setup() {
   pinMode(buzzer,OUTPUT);
 
   // Clear the buffer/display
-  display.clearDisplay();
+  //display.clearDisplay();
 
   Serial.println(F("Adafruit MQTT demo"));
 
@@ -140,10 +140,10 @@ void loop() {
   //condition used: if...else condition
   //HIGH = 1 or ON      LOW = 0 or OFF
   if(Sensor == LOW){
-    display.setTextColor(WHITE);
+    /*display.setTextColor(WHITE);
     display.setCursor(0, 0);
     display.setTextSize(2);
-    display.print("OBJECT");
+    display.print("OBJECT");*/
     i  = 1;                       //call 1 if there is movement
     
     digitalWrite(ledR, HIGH);
@@ -151,10 +151,10 @@ void loop() {
     digitalWrite(buzzer,HIGH);
   }
   else{
-    display.setTextColor(WHITE);
+    /*display.setTextColor(WHITE);
     display.setCursor(0, 0);
     display.setTextSize(3);
-    display.print("No Object");
+    display.print("No Object");*/
     i  = 0;                       //call 0 if there is no movement
     
     digitalWrite(ledR, LOW);
@@ -172,7 +172,7 @@ void loop() {
   }
 
   delay(2000);
-  display.clearDisplay();
+  //display.clearDisplay();
 
   // ping the server to keep the mqtt connection alive
   // NOT required if you are publishing once every KEEPALIVE seconds
