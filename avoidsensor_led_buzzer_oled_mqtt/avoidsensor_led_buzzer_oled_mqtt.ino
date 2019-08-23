@@ -94,7 +94,7 @@ void setup() {
   pinMode(buzzer,OUTPUT);
 
   // Clear the buffer/display
-  //display.clearDisplay();
+  display.clearDisplay();
 
   Serial.println(F("Adafruit MQTT demo"));
 
@@ -136,6 +136,8 @@ void loop() {
 /************************ The controlled coding ********************************/
 
   int Sensor = digitalRead(avoidpin);
+  
+  display.clearDisplay();
 
   //condition used: if...else condition
   //HIGH = 1 or ON      LOW = 0 or OFF
@@ -172,7 +174,7 @@ void loop() {
   }
 
   delay(2000);
-  //display.clearDisplay();
+  display.display();
 
   // ping the server to keep the mqtt connection alive
   // NOT required if you are publishing once every KEEPALIVE seconds
